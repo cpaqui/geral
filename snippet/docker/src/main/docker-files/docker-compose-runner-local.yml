@@ -1,0 +1,26 @@
+version: '3.2'
+
+services:
+  ${project.artifactId}:
+    image: ${repo}/${org.prefix}/${project.artifactId}${service.suffix}:${project.version}
+    hostname: cukereports
+    environment:
+      - CUKE_MONGO_USER=cukereports
+      - CUKE_MONGO_PASS=cuk3r3p0rts
+      - CUKE_MONGO_SERVER=mongodb:27017
+      - CUKE_MONGO_DATABASE=cukereports
+    ports:
+      - "8080:8080"
+      
+  mongodb:
+    image: docker-hub.seg-social.pt/ii/docker-mongodb-4.0.3:5.0.0
+    hostname: mongodb
+    volumes:
+      - ./bootstrap-mongo:/opt/bootstrap    
+    environment:
+      - MONGODB_ADMIN_USERNAME=root
+      - MONGODB_ADMIN_PASSWORD=pass
+      - MONGODB_APPLICATION_DATABASE=cukereports
+      - MONGODB_APPLICATION_USER=cukereports
+      - MONGODB_APPLICATION_PASS=cuk3r3p0rts
+

@@ -1,0 +1,6 @@
+# ENV
+# ENV=secretname
+CUKE_MONGO_USER=cukereports.mongodbuser
+CUKE_MONGO_PASS=cukereports.mongodbpass
+CUKE_MONGO_SERVER
+CUKE_MONGO_DATABASE

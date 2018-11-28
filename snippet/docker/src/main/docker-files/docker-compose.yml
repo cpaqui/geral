@@ -1,0 +1,7 @@
+version: '3.2'
+
+services:
+  ${project.artifactId}:
+    build:
+      context: .
+    image: ${repo}/${org.prefix}/${project.artifactId}${service.suffix}:${project.version}

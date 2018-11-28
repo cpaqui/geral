@@ -1,0 +1,37 @@
+<plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-dependency-plugin</artifactId>
+	<executions>
+		<execution>
+			<id>copy-docker-compose-runner-ci-cucumber-report-web</id>
+			<phase>process-sources</phase>
+			<goals>
+				<goal>copy</goal>
+			</goals>
+			<configuration>
+				<artifactItems>
+					<artifactItem>
+						<groupId>at.porscheinformatik.cucumber-report-db</groupId>
+						<artifactId>cucumber-report-web</artifactId>
+						<version>${project.version}</version>
+						<classifier>docker-compose-runner-ci</classifier>
+						<type>yml</type>
+						<overWrite>true</overWrite>
+						<outputDirectory>${project.build.outputDirectory}/additional-resources
+						</outputDirectory>
+					</artifactItem>
+					<artifactItem>
+						<groupId>at.porscheinformatik.cucumber-report-db</groupId>
+						<artifactId>cucumber-report-web</artifactId>
+						<version>${project.version}</version>
+						<classifier>bootstrap-mongo</classifier>
+						<type>sh</type>
+						<overWrite>true</overWrite>
+						<outputDirectory>${project.build.outputDirectory}/additional-resourcesl/bootstrap-mongo
+						</outputDirectory>
+					</artifactItem>
+				</artifactItems>
+			</configuration>
+		</execution>
+	</executions>
+</plugin>

@@ -35,12 +35,10 @@ import java.util.Arrays;
 public class OddOccurrencesInArray {
 
     public static void main(String[] args) {
-	Util.log(String.format("Solution: %d", solution(new int[] {9, 3, 9, 3, 9, 7, 9})));
+	Util.log(String.format("Solution: %d", solution(new int[] {5000, 4000, 234, 234, 5000, 4000, 8, 8, 6, 6, 99999})));
     }
     
     private static int solution (int[] arr) {
-	int solution = 0;
-	
 	Arrays.sort(arr);
 	
 	int current = arr[0];
@@ -53,12 +51,10 @@ public class OddOccurrencesInArray {
 		break;
 	    } else {
 		current = i;
-		currentCount = 0;
+		currentCount = 1;
 	    }
 	}
 	
-	solution = current;
-	
-	return solution;
+	return current;
     }
 }

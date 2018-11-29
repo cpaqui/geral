@@ -3,7 +3,7 @@
 set -e
 
 # Show logo:
-source /root/image_info.sh
+#source /root/image_info.sh
 sed -e "s|@containerImage@|${docker_image_name}|g; s|@buildDate@|${docker_image_build_date}|g" /root/logo.txt
 
 if [ ! -f /.runonce ]; then

@@ -2,17 +2,18 @@ FROM ${base.image}
 LABEL maven.group.id="${project.groupId}"
 LABEL maven.artifact.id="${project.artifactId}" 
 LABEL maven.version="${project.version}"
-LABEL description="${project.description}"
-LABEL scm="${project.scm.developerConnection}"
-LABEL service.name="${service.name}"
-LABEL service.suffix="${service.suffix}"
-LABEL vendor="${project.organization.name}"
+#LABEL description="${project.description}"
+#LABEL service.name="${service.name}"
+#LABEL vendor="${project.organization.name}"
 
 ENV TZ Europe/Lisbon
 
 #ARG some envaroment variables used only at build time
+ARG http_proxy=http://ssproxysvc.seg-social.pt:80/
+ARG https_proxy=http://ssproxysvc.seg-social.pt:80/
 
 RUN yum install -y java-1.8.0-openjdk-headless && \
+    yum install -y wget && \
     yum clean all && \
     rm -rf /var/cache/yum
 
@@ -25,6 +26,7 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/v0.6.0/dockerize
 
 #copy from host to image
 COPY docker_files /root
+COPY  example-spring-boot.jar /
 #change permissions to execute scripts
 RUN  chmod 755 /root/*.sh
 
@@ -35,7 +37,7 @@ EXPOSE 8080
 ENTRYPOINT ["/root/entrypoint.sh"]
 
 #excute some script before inicialization
-CMD ["/root/run-cucumber-report-web.sh"]
+CMD ["/root/run-app.sh"]
 
 LABEL build-timestamp="${maven.build.timestamp}"
 RUN echo "Image created from ${base.image} on ${maven.build.timestamp}" >/README.txt

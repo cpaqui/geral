@@ -1,0 +1,26 @@
+version: '3.2'
+
+services:
+  ${project.artifactId}:
+    image: ${project.artifactId}:${project.version}
+    hostname: spring-boot
+    environment:
+      - MONGO_USER=usr
+      - MONGO_PASS=pass
+      - MONGO_SERVER=mongodb:27017
+      - MONGO_DATABASE=example
+    ports:
+      - "8080:8080"
+      
+  mongodb:
+    image: mongo
+    hostname: mongodb
+    volumes:
+      - ./bootstrap-mongo:/opt/bootstrap    
+    environment:
+      - MONGODB_ADMIN_USERNAME=root
+      - MONGODB_ADMIN_PASSWORD=pass
+      - MONGODB_APPLICATION_USER=usr
+      - MONGODB_APPLICATION_PASS=pass
+      - MONGODB_APPLICATION_DATABASE=example
+

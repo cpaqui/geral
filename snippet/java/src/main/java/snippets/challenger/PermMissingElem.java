@@ -20,7 +20,7 @@ public class PermMissingElem {
 	if (arr.length == 1) solution = arr[0];
 	else if (arr.length > 1 && arr[0] != 0) return arr[0] -1;
 	else if (arr.length > 1 && arr[0] != 0) return arr[arr.length-1]+1;
-	    
+
 	return solution;
     }
 }
